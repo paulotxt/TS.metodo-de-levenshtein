@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste de Número Próximo</title>
+</head>
+<body>
+  <h3>Digite um número:</h3>
+  <input type="number" id="entrada" placeholder="Ex: 14">
+  <button onclick="testar()">Ver mais próximo</button>
+  <p id="resultado"></p>
+
+  <script>
+    // Lista base (vocabulário de números)
+    const vocabulario = [0,5, 10, 15,20];
+  const DISTANCIAMAX = 5
+  
+    function encontrarMaisProximo(numero) {
+      const min = Math.min(...vocabulario);
+      const max = Math.max(...vocabulario);
+      
+      // Verifica se o número está muito distante do intervalo
+      if (numero < min - DISTANCIAMAX|| numero > max + DISTANCIAMAX) {
+        return "Número desconhecido";
+      }
+
+      // Encontra o valor mais próximo dentro do vocabulário
+      let maisProximo = vocabulario[0];
+      let menorDiferenca = Math.abs(numero - vocabulario[0]);
+
+      for (let i = 1; i < vocabulario.length; i++) {
+        const diferenca = Math.abs(numero - vocabulario[i]);
+        if (diferenca < menorDiferenca) {
+          menorDiferenca = diferenca;
+          maisProximo = vocabulario[i];
+        }
+      }
+
+      return maisProximo;
+    }
+
+    // Função que lê o input e mostra o resultado
+    function testar() {
+      const valor = Number(document.getElementById("entrada").value);
+      const resultado = encontrarMaisProximo(valor);
+      document.getElementById("resultado").textContent = `Resultado: ${resultado}`;
+    }
+  </script>
+</body>
+</html>

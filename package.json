@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "fast-levenshtein": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/fast-levenshtein": "^0.0.4"
+  }
+}
